@@ -14,7 +14,7 @@ Follow these instructions to get the Todo List app up and running on your local 
 1. **Clone the Repository:** Start by cloning this repository to your local machine using the following command:
 
 ```
-git clone https://github.com/your-username/todo-list-react.git
+git clone https://github.com/gaomingyang/todo-list-react.git
 ```
 
 2.**Navigate to the Project Directory:** Move into the project directory that you just cloned:
