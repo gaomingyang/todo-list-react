@@ -5,6 +5,24 @@ import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 
 function App(props) {
+  const [filter, setFilter] = useState("All");
+  const FILTER_MAP = {
+    All: () => true,
+    Active: (task) => !task.completed,
+    Completed: (task) => task.completed,
+  };
+  const FILTER_NAMES = Object.keys(FILTER_MAP);
+  // console.log(FILTER_NAMES)
+
+  const filterList = FILTER_NAMES.map((name) => (
+    <FilterButton 
+      key={name} 
+      name={name} 
+      isPressed={name == filter}
+      setFilter={setFilter}
+    />
+  ));
+
   const [tasks,setTasks] = useState(props.tasks);
   
 
@@ -43,16 +61,21 @@ function App(props) {
   }
 
  // You should always pass a unique key to anything you render with iteration. Nothing obvious will change in your browser, but if you do not use unique keys, React will log warnings to your console and your app may behave strangely!
-  const taskList = tasks?.map((task) => (
-    <Todo
-      id={task.id}
-      name={task.name}
-      completed={task.completed}
-      key={task.id}
-      toggleTaskCompleted={toggleTaskCompleted}
-      deleteTask={deleteTask}
-      editTask={editTask}
-    />
+  //这个问号需要弄明白
+  // const taskList = props.tasks?.map((task) => (
+  // const taskList = tasks?.map((task) => (
+  const taskList = tasks
+    .filter(FILTER_MAP[filter])
+    .map((task) => (
+      <Todo
+        id={task.id}
+        name={task.name}
+        completed={task.completed}
+        key={task.id}
+        toggleTaskCompleted={toggleTaskCompleted}
+        deleteTask={deleteTask}
+        editTask={editTask}
+      />
   ));
 
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
@@ -63,9 +86,7 @@ function App(props) {
       <h1>Todo List</h1>
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
-        <FilterButton />
-        <FilterButton />
-        <FilterButton />
+        {filterList}
       </div>
 
       <h2 id="list-heading">{headingText}</h2>
