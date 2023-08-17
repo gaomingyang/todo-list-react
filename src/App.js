@@ -12,16 +12,33 @@ function App(props) {
     setTasks([...tasks,newTask])
   }
 
-  
+  function toggleTaskCompleted(id) {
+    // console.log(id);
+    const updatedTasks = tasks.map((task)=>{
+      if (id === task.id) {
+        //这部分需要研究一下
+        return {...task,completed:!task.completed};
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
 
+  function deleteTask(id) {
+    // console.log("delete task"+id);
+    const remainingTasks = tasks.filter((task)=> task.id != id);
+    setTasks(remainingTasks);
+  }
 
+ // You should always pass a unique key to anything you render with iteration. Nothing obvious will change in your browser, but if you do not use unique keys, React will log warnings to your console and your app may behave strangely!
   const taskList = tasks?.map((task) => (
-    // You should always pass a unique key to anything you render with iteration. Nothing obvious will change in your browser, but if you do not use unique keys, React will log warnings to your console and your app may behave strangely!
     <Todo
       id={task.id}
       name={task.name}
       completed={task.completed}
       key={task.id}
+      toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask={deleteTask}
     />
   ));
 
