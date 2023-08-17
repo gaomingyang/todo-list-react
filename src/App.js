@@ -5,7 +5,8 @@ import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 
 function App(props) {
-  const [tasks,setTasks] = useState(props.tasks)
+  const [tasks,setTasks] = useState(props.tasks);
+  
 
   function addTask(name) {
     const newTask = {id:`todo-${nanoid()}`,name,completed:false};
@@ -26,8 +27,19 @@ function App(props) {
 
   function deleteTask(id) {
     // console.log("delete task"+id);
+    //filter这个的用法需要看一下
     const remainingTasks = tasks.filter((task)=> task.id != id);
     setTasks(remainingTasks);
+  }
+
+  function editTask(id,newName) {
+    const editedTaskList = tasks.map((task)=>{
+      if (task.id == id) {
+        return {...task,name:newName};
+      }
+      return task;
+    })
+    setTasks(editedTaskList)
   }
 
  // You should always pass a unique key to anything you render with iteration. Nothing obvious will change in your browser, but if you do not use unique keys, React will log warnings to your console and your app may behave strangely!
@@ -39,6 +51,7 @@ function App(props) {
       key={task.id}
       toggleTaskCompleted={toggleTaskCompleted}
       deleteTask={deleteTask}
+      editTask={editTask}
     />
   ));
 
