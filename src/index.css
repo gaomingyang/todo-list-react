@@ -4,7 +4,8 @@
 *::after {
   box-sizing: border-box;
 }
-*:focus {
+/* *:focus { */
+.btn.toggle-btn:focus {
   outline: 3px dashed #228bec;
   outline-offset: 0;
 }

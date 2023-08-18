@@ -8,9 +8,9 @@ function App(props) {
   // const [tasks,setTasks] = useState(props.tasks);
   const [tasks,setTasks] = useState([]);
 
+  //组件挂载时，从localStorage里面取数据
   useEffect(()=>{
-    //组件挂载时，从localStorage里面取数据
-    const taskData = localStorage.getItem["todo_data"]
+    const taskData = localStorage.getItem("todo_data")
     if (taskData) {
       const parsedTasks = JSON.parse(taskData)
       setTasks(parsedTasks)
@@ -34,13 +34,10 @@ function App(props) {
     <FilterButton 
       key={name} 
       name={name} 
-      isPressed={name == filter}
+      isPressed={name === filter}
       setFilter={setFilter}
     />
   ));
-
-  
-  
 
   function addTask(name) {
     const newTask = {id:`todo-${nanoid()}`,name,completed:false};
@@ -62,13 +59,13 @@ function App(props) {
   function deleteTask(id) {
     // console.log("delete task"+id);
     //filter这个的用法需要看一下
-    const remainingTasks = tasks.filter((task)=> task.id != id);
+    const remainingTasks = tasks.filter((task)=> task.id !== id);
     setTasks(remainingTasks);
   }
 
   function editTask(id,newName) {
     const editedTaskList = tasks.map((task)=>{
-      if (task.id == id) {
+      if (task.id === id) {
         return {...task,name:newName};
       }
       return task;
@@ -77,7 +74,9 @@ function App(props) {
   }
 
  // You should always pass a unique key to anything you render with iteration. Nothing obvious will change in your browser, but if you do not use unique keys, React will log warnings to your console and your app may behave strangely!
-  //这个问号需要弄明白
+  /*可选链操作符 ?. 来进行安全的属性访问。这个操作符的作用是在访问对象属性或调用方法之前，先检查对象是否为 null 或 undefined，以避免在这种情况下引发错误。如果 tasks 不为 null 或 undefined，则执行 .map 方法。如果 tasks 为 null 或 undefined，则整个表达式不会引发错误，也不会执行 .map 方法。
+  这种用法可以防止在 tasks 为 null 或 undefined 时导致代码崩溃。如果没有可选链操作符 ?.，在这种情况下执行 .map 会导致错误。
+  */
   // const taskList = props.tasks?.map((task) => (
   // const taskList = tasks?.map((task) => (
   const taskList = tasks
@@ -107,7 +106,6 @@ function App(props) {
 
       <h2 id="list-heading">{headingText}</h2>
       <ul
-        role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
         {taskList}
