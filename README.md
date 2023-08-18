@@ -7,6 +7,7 @@ This is a simple Todo List application built using React. The application allows
 * Mark as Completed: Check off tasks that you've completed to keep track of your progress.
 * Delete Tasks: Remove tasks from the list that are no longer needed.
 * Filtering: Filter tasks based on their completion status to focus on what's important.
+* Data Persistence: Task data is saved in the browser's localStorage. Unless you delete it, the next time you access this app, your data will still be there.
 
 # Getting Started
 Follow these instructions to get the Todo List app up and running on your local machine.
