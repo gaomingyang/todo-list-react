@@ -1,8 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+
+function usePrevious(value) {
+    const ref = useRef()
+    useEffect(() => {
+        ref.current = value;
+    })
+    return ref.current;
+}
 
 function Todo(props) {
     const [isEditing, setEditing] = useState(false)
     const [newName, setNewName] = useState(props.name);
+
+    const editFieldRef = useRef(null);
+    const editButtonRef = useRef(null);
+
+    const wasEditing = usePrevious(isEditing)
+
+    useEffect(()=>{
+        // console.log("side effect");
+        //点击编辑按钮后，这样自动让编辑输入框被focus，提高用户体验
+        if(!wasEditing && isEditing) {
+            editFieldRef.current.focus();
+        }
+        //曾经编辑过，现在未编辑，才会focus当前
+        if (wasEditing && !isEditing){
+            editButtonRef.current.focus();
+        }
+    },[wasEditing,isEditing]);
+    // console.log("main render");
 
     function handleChange(e) {
         setNewName(e.target.value);
@@ -27,6 +53,7 @@ function Todo(props) {
                     type="text" 
                     value={newName}
                     onChange={handleChange}
+                    ref={editFieldRef}
                     />
             </div>
             <div className="btn-group">
@@ -64,6 +91,7 @@ function Todo(props) {
                     type="button" 
                     className="btn"
                     onClick={()=>setEditing(true)}
+                    ref={editButtonRef}
                     >
                     Edit <span className="visually-hidden">{props.name}</span>
                 </button>

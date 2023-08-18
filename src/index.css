@@ -56,8 +56,6 @@ input[type="text"] {
 }
 body {
   width: 100%;
-  max-width: 68rem;
-  margin: 0 auto;
   font:
     1.6rem/1.25 Arial,
     sans-serif;
@@ -148,14 +146,37 @@ body {
   margin-top: 1.2rem;
 }
 /* END GLOBAL STYLES */
+
+#page {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */  
+  
+}
+
 .todoapp {
+  margin: 0 auto;
+  max-width: 68rem;
   background: #fff;
-  margin: 2rem 0 4rem 0;
+  margin: 2rem auto;
   padding: 1rem;
   position: relative;
   box-shadow:
     0 2px 4px 0 rgba(0, 0, 0, 0.2),
     0 2.5rem 5rem 0 rgba(0, 0, 0, 0.1);
+}
+.notice{
+  max-width: 68rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  border: 1px solid #565656;
+  font: 1.6rem/1.25 Arial,sans-serif;
+  color: #A8ACB0;
+  background-color: #161719;
+}
+.bold{
+  font-weight: bold;
 }
 @media screen and (min-width: 550px) {
   .todoapp {
