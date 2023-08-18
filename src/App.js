@@ -1,10 +1,27 @@
-import React,{ useState } from "react";
+import React,{ useState, useEffect } from "react";
 import {nanoid} from "nanoid"
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 
 function App(props) {
+  // const [tasks,setTasks] = useState(props.tasks);
+  const [tasks,setTasks] = useState([]);
+
+  useEffect(()=>{
+    //组件挂载时，从localStorage里面取数据
+    const taskData = localStorage.getItem["todo_data"]
+    if (taskData) {
+      const parsedTasks = JSON.parse(taskData)
+      setTasks(parsedTasks)
+    }
+  },[])
+
+  //当task数据变化时，将数据异步写入到localStorage里面
+  useEffect(()=>{
+    localStorage.setItem('todo_data',JSON.stringify(tasks))
+  },[tasks])
+
   const [filter, setFilter] = useState("All");
   const FILTER_MAP = {
     All: () => true,
@@ -12,7 +29,6 @@ function App(props) {
     Completed: (task) => task.completed,
   };
   const FILTER_NAMES = Object.keys(FILTER_MAP);
-  // console.log(FILTER_NAMES)
 
   const filterList = FILTER_NAMES.map((name) => (
     <FilterButton 
@@ -23,7 +39,7 @@ function App(props) {
     />
   ));
 
-  const [tasks,setTasks] = useState(props.tasks);
+  
   
 
   function addTask(name) {
