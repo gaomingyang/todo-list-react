@@ -68,3 +68,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+next plan
+加上路由功能，做成多个页面可以切换
+可以再任务列表页加上夜间模式，样式参考简书。
+用路由功能，现在新页面夜间模式做试验，再迁移到todo页。
+
+深色模式参考：https://web.dev/learn/design/theming/#customize-the-browser-interface

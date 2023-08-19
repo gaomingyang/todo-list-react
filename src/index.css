@@ -147,6 +147,9 @@ body {
 }
 /* END GLOBAL STYLES */
 
+
+
+
 #page {
   /* display: flex; */
   /* flex-direction: column; */
@@ -311,4 +314,29 @@ body {
 }
 .c-cb > input[type="checkbox"]:checked + label::after {
   opacity: 1;
+}
+
+/* dark mode style */
+@media (prefers-color-scheme: dark) {
+  /* Styles for a dark theme*/
+  body {
+    background-color: black;
+    color: #c8c8c8;
+  }
+  input {
+    background-color: #908F91;
+    color: white;
+    border-color: white;
+  }
+  button {
+    background-color: black;
+    color: white;
+    border-color: #908F91;
+  }
+  .todoapp{
+    background-color: #3f3f3f;
+  }
+  .btn__danger {
+    background-color: #BA4742;
+  }
 }
