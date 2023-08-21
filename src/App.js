@@ -15,14 +15,26 @@ function usePrevious(value) {
 function App(props) {
   // const [tasks,setTasks] = useState(props.tasks);
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState('All');
 
   //组件挂载时，从localStorage里面取数据
   useEffect(() => {
-    const taskData = localStorage.getItem("todo_data")
+    // console.log("app组件挂载时触发，获取localstorage")
+    const taskData = localStorage.getItem("todo_data");
     if (taskData) {
       const parsedTasks = JSON.parse(taskData)
       setTasks(parsedTasks)
     }
+
+    //筛选数据
+    let cachedFilter = localStorage.getItem("filter");
+    if (cachedFilter) {
+      setFilter(cachedFilter)
+    }else{
+      //没有则设置默认值
+      setFilter("All")
+    }
+
   }, [])
 
   //当task数据变化时，将数据异步写入到localStorage里面
@@ -30,7 +42,11 @@ function App(props) {
     localStorage.setItem('todo_data', JSON.stringify(tasks))
   }, [tasks])
 
-  const [filter, setFilter] = useState("All");
+  //filterName发生变化时，写入到localStorage
+  useEffect(()=>{
+    localStorage.setItem('filter', filter)
+  },[filter]);
+
   const FILTER_MAP = {
     All: () => true,
     Active: (task) => !task.completed,
@@ -87,8 +103,7 @@ function App(props) {
   */
   // const taskList = props.tasks?.map((task) => (
   // const taskList = tasks?.map((task) => (
-  const taskList = tasks
-    .filter(FILTER_MAP[filter])
+  const taskList = tasks?.filter(FILTER_MAP[filter])
     .map((task) => (
       <Todo
         id={task.id}
