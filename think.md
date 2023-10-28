@@ -9,3 +9,6 @@ https://www.yuwin.ca/jobs/253578887-health-safety-training-supervisor-at-coeur-m
 ```
 npx create-react-app todo-list-react
 ```
+
+压缩
+zip todo.zip -r build
