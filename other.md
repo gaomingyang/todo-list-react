@@ -76,4 +76,13 @@ next plan
 
 深色模式参考：https://web.dev/learn/design/theming/#customize-the-browser-interface
 
-刷新保持筛选标签不变
+[x]增加深色模式
+[x]刷新保持筛选标签不变
+[]多路由，新页面 https://reactrouter.com/en/main/start/tutorial
+
+增加子任务
+增加设置按钮，可以设置页面light/dark主题
+增加账户体系，可以存储、导出json。
+可以导出每日任务完成序列、每日统计折线图？
+
+花一天时间，学习vite

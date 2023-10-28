@@ -128,8 +128,16 @@ function App(props) {
     }
   }, [tasks.length, prevTaskLength])
 
+  function toggleDark(params) {
+    const body = document.body;
+    body.classList.toggle("manual-mode");
+  }
+
   return (
     <div id="page">
+      <div id="header">
+        <button id="dark-mode-toggle" onClick={toggleDark}>Dark</button>
+      </div>
       <div className="todoapp stack-large">
         <h1>Todo List</h1>
         <Form addTask={addTask} />
