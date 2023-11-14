@@ -136,7 +136,7 @@ function App(props) {
   return (
     <div id="page">
       <div id="header">
-        <button id="dark-mode-toggle" onClick={toggleDark}>Dark</button>
+        {/* <button id="dark-mode-toggle" onClick={toggleDark}>Dark</button> */}
       </div>
       <div className="todoapp stack-large">
         <h1>Todo List</h1>
