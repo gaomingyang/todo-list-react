@@ -12,3 +12,8 @@ npx create-react-app todo-list-react
 
 压缩
 zip todo.zip -r build
+
+### deploy to github pages
+npm install gh-pages --save-dev
+npm run deploy
+https://www.geeksforgeeks.org/deployment-of-react-application-using-github-pages/
