@@ -41,7 +41,6 @@ function Todo(props) {
 
     // 取消编辑
     function handleCancel() {
-        console.log("取消编辑")
         setEditing(false)
         setNewName(props.name)
     }
