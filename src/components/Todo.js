@@ -35,12 +35,12 @@ function Todo(props) {
     }
 
     // 点击编辑
-    function handleEditing(e) {
+    function handleEditing() {
         setEditing(true)
     }
 
     // 取消编辑
-    function handleCancel(e) {
+    function handleCancel() {
         console.log("取消编辑")
         setEditing(false)
         setNewName(props.name)
