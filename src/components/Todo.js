@@ -34,6 +34,18 @@ function Todo(props) {
         setNewName(e.target.value);
     }
 
+    // 点击编辑
+    function handleEditing(e) {
+        setEditing(true)
+    }
+
+    // 取消编辑
+    function handleCancel(e) {
+        console.log("取消编辑")
+        setEditing(false)
+        setNewName(props.name)
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         props.editTask(props.id, newName);
@@ -60,7 +72,7 @@ function Todo(props) {
                 <button 
                     type="button" 
                     className="btn todo-cancel"
-                    onClick={()=> setEditing(false)}
+                    onClick={handleCancel}
                     >
                     Cancel
                     <span className="visually-hidden">renaming {props.name}</span>
@@ -90,7 +102,7 @@ function Todo(props) {
                 <button 
                     type="button" 
                     className="btn"
-                    onClick={()=>setEditing(true)}
+                    onClick={handleEditing}
                     ref={editButtonRef}
                     >
                     Edit <span className="visually-hidden">{props.name}</span>
