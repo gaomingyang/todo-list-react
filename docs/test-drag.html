@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .draggable {
+      width: 100px;
+      height: 50px;
+      background-color: lightblue;
+      margin: 10px;
+      display: inline-block;
+      cursor: grab;
+    }
+  </style>
+</head>
+<body>
+  <div class="draggable" draggable="true">Item 1</div>
+  <div class="draggable" draggable="true">Item 2</div>
+  <div class="draggable" draggable="true">Item 3</div>
+
+  <script>
+    let activeElement = null;
+    let startY = 0;
+
+    document.addEventListener('mousedown', (e) => {
+      if (e.target.classList.contains('draggable')) {
+        activeElement = e.target;
+        startY = e.clientY;
+        activeElement.style.cursor = 'grabbing';
+      }
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (activeElement) {
+        const deltaY = e.clientY - startY;
+        activeElement.style.transform = `translateY(${deltaY}px)`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (activeElement) {
+        activeElement.style.transform = 'translateY(0)';
+        activeElement.style.cursor = 'grab';
+        activeElement = null;
+      }
+    });
+  </script>
+</body>
+</html>
